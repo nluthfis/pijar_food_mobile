@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     marginLeft: 10,
+    textTransform: 'capitalize',
   },
   cardContent: {
     flexDirection: 'row',

@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card, Title, Paragraph, Button} from 'react-native-paper';
+import {Card, Title, Paragraph} from 'react-native-paper';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import config from '../../../../config';
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     marginLeft: 10,
+    textTransform: 'capitalize',
   },
   emptyText: {
     color: 'black',

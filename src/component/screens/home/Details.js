@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
   StatusBar,
   TextInput,
   Alert,
+  Linking,
 } from 'react-native';
 import {
   Card,
@@ -52,7 +53,6 @@ const Detail = ({route}) => {
           `${config.API_URL}getlikes?recipe_id=${itemData.id}`,
           {},
         );
-        console.log(response.data);
         if (!response.data.data || response.data.data.length === 0) {
           setLiked(false);
         } else {
@@ -125,28 +125,24 @@ const Detail = ({route}) => {
               />
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-            }}>
+          <View style={{alignItems: 'center'}}>
             <Button
               mode="contained"
               buttonColor={liked ? 'red' : 'white'}
               onPress={() => handleLikeButtonPress()}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Icon
-                name="heart"
-                size={24}
-                style={{padding: 3}}
-                color={liked ? 'white' : 'red'}
-              />
+              style={{justifyContent: 'center'}}
+              contentStyle={{flexDirection: 'row-reverse'}}
+              icon={({size, color}) => (
+                <Icon
+                  name="heart"
+                  size={size}
+                  style={{padding: 5}}
+                  color={liked ? 'white' : 'red'}
+                />
+              )}>
+              <Text style={{color: liked ? 'white' : 'red'}}>
+                {liked ? 'Dislike' : 'Like'}
+              </Text>
             </Button>
           </View>
         </View>
@@ -200,15 +196,39 @@ const FirstRoute = ({itemData}) => {
 };
 
 const SecondRoute = ({itemData}) => {
-  // Extract the video ID from the videoLink
-  const videoId = itemData.videoLink.split('v=')[1];
+  const video_Id = itemData.videoLink.split('v=')[1];
+  const videoId = itemData.videoLink;
+  const [playing, setPlaying] = useState(false);
+  const openYouTubeVideo = () => {
+    const url = `${videoId}`;
+    Linking.openURL(url);
+  };
+
+  // const onStateChange = useCallback(state => {
+  //   if (state === 'ended') {
+  //     setPlaying(false);
+  //     Alert.alert('video has finished playing!');
+  //   }
+  // }, []);
+
+  // const togglePlaying = useCallback(() => {
+  //   setPlaying(prev => !prev);
+  // }, []);
   return (
-    <View style={[styles.scene, {backgroundColor: 'white'}]}>
-      <YoutubePlayer
-        height={300} // adjust as needed
-        play={true}
-        videoId={videoId}
-      />
+    <View>
+      {videoId ? (
+        <TouchableOpacity onPress={openYouTubeVideo}>
+          <YoutubePlayer
+            height={300}
+            play={playing}
+            videoId={video_Id}
+            // onChangeState={onStateChange}
+          />
+          {/* <Button title={playing ? 'pause' : 'play'} onPress={togglePlaying} /> */}
+        </TouchableOpacity>
+      ) : (
+        <Text>Video not available</Text>
+      )}
     </View>
   );
 };
@@ -313,6 +333,7 @@ const ThirdRoute = ({itemData}) => {
             defaultValue={reviewRef.current}
             style={styles.textInput}
             placeholder="Enter your review here"
+            placeholderTextColor="black"
           />
           <Button
             mode="elevated"
@@ -467,13 +488,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: 'black',
   },
   score: {
     fontSize: 14,
     marginBottom: 5,
+    color: 'black',
   },
   comment: {
     fontSize: 14,
+    color: 'black',
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -492,6 +516,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     paddingLeft: 10,
+    color: 'black',
   },
   btnReview: {
     backgroundColor: '#7abec1',
@@ -528,6 +553,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
     textAlign: 'center',
+    color: 'black',
   },
   // btnLike: {
   //   alignSelf: 'center',

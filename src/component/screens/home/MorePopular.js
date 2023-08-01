@@ -8,10 +8,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card, Title, Paragraph, Button} from 'react-native-paper';
+import {Card, Title, Paragraph} from 'react-native-paper';
 import axios from 'axios';
 import config from '../../../../config';
-import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const MorePopular = () => {
@@ -101,6 +100,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     marginLeft: 10,
+    textTransform: 'capitalize',
   },
   emptyText: {
     color: 'black',

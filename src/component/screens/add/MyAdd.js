@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
@@ -20,16 +22,17 @@ import config from '../../../../config';
 import {PERMISSIONS, request} from 'react-native-permissions';
 
 export default function MyAdd() {
-  const tittle = useRef('');
-  const ingredients = useRef('');
-  const videoLink = useRef('');
-  const category = useRef('');
-  const description = useRef('');
+  const [tittle, setTittle] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [videoLink, setVideoLink] = useState('');
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState(null);
   const auth = useSelector(state => state?.auth);
   const navigation = useNavigation();
-  const [newPhotoChosen, setNewPhotoChosen] = React.useState(false);
-  const [buttonMode, setButtonMode] = useState('outlined');
+  const [newPhotoChosen, setNewPhotoChosen] = useState(false);
+  const scrollViewRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const requestGalleryPermission = async () => {
     try {
@@ -111,7 +114,6 @@ export default function MyAdd() {
     });
   };
   const chooseImage = () => {
-    setButtonMode('contained');
     let options = {
       mediaType: 'photo',
       maxWidth: 300,
@@ -137,6 +139,7 @@ export default function MyAdd() {
   };
 
   const handleAdd = async () => {
+    setLoading(true);
     try {
       if (tittle.current === '') {
         Alert.alert('Tittle cant be empty');
@@ -153,11 +156,11 @@ export default function MyAdd() {
       }
       const token = auth?.token;
       const formData = new FormData();
-      formData.append('tittle', tittle.current);
-      formData.append('ingredients', ingredients.current);
-      formData.append('videoLink', videoLink.current);
-      formData.append('category', category.current);
-      formData.append('description', description.current);
+      formData.append('tittle', tittle);
+      formData.append('ingredients', ingredients);
+      formData.append('videoLink', videoLink);
+      formData.append('category', category);
+      formData.append('description', description);
       formData.append('photo', {
         uri: photo,
         type: 'image/jpeg',
@@ -171,13 +174,22 @@ export default function MyAdd() {
           },
         })
         .then(res => {
+          setPhoto(null);
+          setTittle('');
+          setIngredients('');
+          setVideoLink('');
+          setCategory('');
+          setDescription('');
+          setNewPhotoChosen(false);
           if (res.data.message === 'Success insert data') {
-            setPhoto(null);
             navigation.navigate('MyHome');
           }
+          scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true});
         });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -194,7 +206,7 @@ export default function MyAdd() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#ecf5f6" barStyle="dark-content" />
-      <ScrollView style={styles.scroll}>
+      <ScrollView style={styles.scroll} ref={scrollViewRef}>
         <Text style={styles.text}>Add Your Recipe</Text>
         <View style={styles.formContainer}>
           <TextInput
@@ -204,11 +216,15 @@ export default function MyAdd() {
             keyboardType="default"
             underlineColor="transparent"
             theme={{roundness: 10}}
-            onChangeText={value => (tittle.current = value)}
+            value={tittle}
+            onChangeText={value => setTittle(value)}
             mode="outlined"
             outlineColor={'#7abec1'}
             activeOutlineColor="#206b73"
           />
+          <Text style={{color: '#206b73', marginLeft: 20, marginBottom: 5}}>
+            Please include a comma followed by a space for each ingredient.
+          </Text>
           <TextInput
             style={styles.input2}
             placeholder="Ingredients"
@@ -216,7 +232,8 @@ export default function MyAdd() {
             keyboardType="default"
             underlineColor="transparent"
             theme={{roundness: 10}}
-            onChangeText={value => (ingredients.current = value)}
+            value={ingredients}
+            onChangeText={value => setIngredients(value)}
             mode="outlined"
             multiline={true}
             outlineColor={'#7abec1'}
@@ -229,7 +246,8 @@ export default function MyAdd() {
             keyboardType="default"
             underlineColor="transparent"
             theme={{roundness: 10}}
-            onChangeText={value => (videoLink.current = value)}
+            value={videoLink}
+            onChangeText={value => setVideoLink(value)}
             mode="outlined"
             outlineColor={'#7abec1'}
             activeOutlineColor="#206b73"
@@ -241,7 +259,8 @@ export default function MyAdd() {
             keyboardType="default"
             underlineColor="transparent"
             theme={{roundness: 10}}
-            onChangeText={value => (category.current = value)}
+            value={category}
+            onChangeText={value => setCategory(value)}
             mode="outlined"
             outlineColor={'#7abec1'}
             activeOutlineColor="#206b73"
@@ -253,7 +272,8 @@ export default function MyAdd() {
             keyboardType="default"
             underlineColor="transparent"
             theme={{roundness: 10}}
-            onChangeText={value => (description.current = value)}
+            value={description}
+            onChangeText={value => setDescription(value)}
             mode="outlined"
             multiline={true}
             outlineColor={'#7abec1'}
@@ -300,8 +320,9 @@ export default function MyAdd() {
             labelStyle={{color: 'white'}}
             theme={{colors: {outline: '#298994'}}}
             title="Submit Photo"
+            disabled={loading}
             onPress={handleAdd}>
-            Add Recipe
+            {loading ? 'Loading...' : 'Add Recipe'}
           </Button>
         </View>
       </ScrollView>
@@ -342,18 +363,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
-    marginTop: 10,
     height: 50,
   },
   input2: {
     backgroundColor: 'white',
     marginLeft: 10,
     marginRight: 10,
+    marginBottom: 10,
     height: 150,
   },
   button: {
     backgroundColor: '#298994',
-    borderRadius: 15,
+    borderRadius: 10,
     margin: 10,
     height: 50,
     justifyContent: 'center',
@@ -384,7 +405,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 15,
     height: 50,
-    width: 200,
     justifyContent: 'center',
     backgroundColor: '#298994',
   },

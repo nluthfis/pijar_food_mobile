@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 1,
     width: 130,
+    textTransform: 'capitalize',
   },
 });
 
