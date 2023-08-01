@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "862994264778",
+    "project_id": "mb-pijar-food-13683",
+    "storage_bucket": "mb-pijar-food-13683.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862994264778:android:88843a1486732489b63a33",
+        "android_client_info": {
+          "package_name": "com.mb_pijar_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862994264778-pvihqql9ttlm6dq0s7f8qn0mlj4bc1o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkIGCgYAjNGIUTntJc8mT7PwXFfLSr36A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862994264778-pvihqql9ttlm6dq0s7f8qn0mlj4bc1o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862994264778:android:2001c51fb3d47253b63a33",
+        "android_client_info": {
+          "package_name": "com.pijar_food_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862994264778-pvihqql9ttlm6dq0s7f8qn0mlj4bc1o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkIGCgYAjNGIUTntJc8mT7PwXFfLSr36A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862994264778-pvihqql9ttlm6dq0s7f8qn0mlj4bc1o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
