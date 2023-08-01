@@ -33,23 +33,38 @@ export default function MyAdd() {
 
   const requestGalleryPermission = async () => {
     try {
-      const result = await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES, {
-        title: 'Gallery Permission',
-        message: 'App needs access to your gallery',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      });
-      console.log(result);
-
-      if (result === 'granted') {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          title: 'Gallery Permission',
+          message: 'App needs access to your gallery ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log('Gallery permission given');
         chooseImage();
       } else {
-        console.log('Gallery permission denied');
+        const result = await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES, {
+          title: 'Gallery Permission',
+          message: 'App needs access to your gallery',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        });
+        console.log(result);
+
+        if (result === 'granted') {
+          console.log('Gallery permission given');
+          chooseImage();
+        } else {
+          console.log('Gallery permission denied');
+        }
       }
     } catch (err) {
-      console.log(err);
+      console.warn(err);
     }
   };
 
