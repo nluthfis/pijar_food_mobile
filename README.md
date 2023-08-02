@@ -113,37 +113,97 @@ To learn more about React Native, take a look at the following resources:
 
 <table>
 <tr>
-<td><img width="350px" src="./documentation/splashscreen/openingapps.png" border="0" alt="splashcreen" /></td>
-    <td> <img width="350px" src="./documentation/splashscreen/openingapps2.png" border="0"  alt="Register" /></td>
+    <td>splashcreen</td>
+    <td>splashscreen2</td>
 </tr>
 <tr>
-<td><img width="350px" src="./documentation/auth/login.png" border="0" alt="login" /></td>
-    <td> <img width="350px" src="./documentation/auth/register.png" border="0"  alt="Register" /></td>
+<tr>
+    <td>
+        <img width="350px" src="./documentation/splashscreen/openingapps.png" border="0" alt="splashcreen" />
+    </td>
+    <td> 
+        <img width="350px" src="./documentation/splashscreen/openingapps2.png" border="0"  alt="splashscreen2" />
+    </td>
 </tr>
 <tr>
-<td><img width="350px" src="./documentation/home/home1.png" border="0" alt="home1" /></td>
-    <td> <img width="350px" src="./documentation/home/home2.png" border="0"  alt="home2" /></td>
+    <td>login</td>
+    <td>Register</td>
 </tr>
 <tr>
-<td><img width="350px" src="./documentation/home/search.png" border="0" alt="searchpages" /></td>
-    <td> <img width="350px" src="./documentation/home/popularPages.png" border="0"  alt="popularpages" /></td>
+    <td>
+        <img width="350px" src="./documentation/auth/login.png" border="0" alt="login" />
+    </td>
+    <td> 
+        <img width="350px" src="./documentation/auth/register.png" border="0"  alt="Register" />
+    </td>
 </tr>
 <tr>
-<td><img width="350px" src="./documentation/home/search.png" border="0" alt="searchpages" /></td>
-    <td> <img width="350px" src="./documentation/home/popularPages.png" border="0"  alt="popularpages" /></td>
+    <td>home1</td>
+    <td>home2</td>
 </tr>
 <tr>
-<td><img width="350px" src="./documentation/home/category.png" border="0" alt="category" /></td>
-    <td> <img width="350px" src="./documentation/home/recipesbycategory.png" border="0"  alt="categoryrecipes" /></td>
+    <td>
+    <img width="350px" src="./documentation/home/home1.png" border="0" alt="home1" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/home/home2.png" border="0"  alt="home2" />
+    </td>
 </tr>
-<td><img width="350px" src="./documentation/home/details1.png" border="0" alt="searchpages" /></td>
-    <td> <img width="350px" src="./documentation/home/detailsVideo.png" border="0"  alt="popularpages" /></td>
-    <td> <img width="350px" src="./documentation/home/detailsReview.png" border="0"  alt="popularpages" /></td>
+<tr>
+    <td>searchpages</td>
+    <td>popularpages</td>
 </tr>
+<tr>
+    <td>
+    <img width="350px" src="./documentation/home/search.png" border="0" alt="searchpages" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/home/popularPages.png" border="0"  alt="popularpages" />
+    </td>
 </tr>
-<td><img width="350px" src="./documentation/add/addRecipe.png" border="0" alt="searchpages" /></td>
-    <td> <img width="350px" src="./documentation/profile/isLogin.png" border="0"  alt="popularpages" /></td>
-    <td> <img width="350px" src="./documentation/profile/notLogin.png" border="0"  alt="popularpages" /></td>
+<tr>
+    <td>category</td>
+    <td>category recipes</td>
+</tr>
+<tr>
+    <td>
+    <img width="350px" src="./documentation/home/category.png" border="0" alt="category" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/home/recipesbycategory.png" border="0"  alt="categoryrecipes" />
+    </td>
+</tr>
+<tr>
+    <td>Details1</td>
+    <td>DetailsVideo</td>
+    <td>DetailReview</td>
+</tr>
+<tr>
+    <td>
+    <img width="350px" src="./documentation/home/details1.png" border="0" alt="Details1" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/home/detailsVideo.png" border="0"  alt="DetailsVideo" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/home/detailsReview.png" border="0"  alt="DetailReview" />
+    </td>
+</tr>
+<tr>
+    <td>searchpages</td>
+    <td>popularpages</td>
+    <td>popularpages</td>
+</tr>
+<tr>
+    <td>
+    <img width="350px" src="./documentation/add/addRecipe.png" border="0" alt="searchpages" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/profile/isLogin.png" border="0"  alt="popularpages" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/profile/notLogin.png" border="0"  alt="popularpages" />
+    </td>
 </tr>
 </table>
 
