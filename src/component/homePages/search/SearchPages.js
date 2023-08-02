@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     marginLeft: 10,
+    textTransform: 'capitalize',
   },
   emptyText: {
     color: 'black',

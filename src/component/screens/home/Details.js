@@ -33,6 +33,7 @@ import axios from 'axios';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 import config from '../../../../config';
+import {Rating} from 'react-native-ratings';
 
 const Detail = ({route}) => {
   const {itemData} = route.params;
@@ -359,7 +360,17 @@ const ThirdRoute = ({itemData}) => {
                 )}
                 <View style={styles.commentContent}>
                   <Text style={styles.name}>{comment.name_user}</Text>
-                  <Text style={styles.score}>{comment.score}</Text>
+                  <View style={styles.ratingContainer}>
+                    <Rating
+                      type="star"
+                      ratingCount={5}
+                      startingValue={comment.score}
+                      imageSize={20}
+                      readonly
+                      ratingColor="gold"
+                      ratingBackgroundColor="gray"
+                    />
+                  </View>
                   <Text style={styles.comment}>{comment.comment}</Text>
                 </View>
               </View>
@@ -447,6 +458,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 150,
     width: '75%',
+    textTransform: 'capitalize',
   },
   subtitle: {
     position: 'absolute',
@@ -524,7 +536,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   btnTextReview: {
-    color: 'black',
+    color: 'white',
     fontSize: 14,
   },
   textReview: {
@@ -554,6 +566,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
     color: 'black',
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 5,
   },
   // btnLike: {
   //   alignSelf: 'center',

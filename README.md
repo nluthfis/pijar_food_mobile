@@ -191,13 +191,21 @@ To learn more about React Native, take a look at the following resources:
 </tr>
 <tr>
     <td>addRecipe</td>
-    <td>profileIsLogin</td>
-    <td>profileNotLogin</td>
+    <td>addRecipe2</td>
 </tr>
 <tr>
     <td>
     <img width="350px" src="./documentation/add/addRecipe.png" border="0" alt="addRecipe" />
     </td>
+    <td> 
+    <img width="350px" src="./documentation/add/addRecipe2.png" border="0"  alt="addRecipe2" />
+    </td>
+</tr>
+<tr>
+    <td>profileIsLogin</td>
+    <td>profileNotLogin</td>
+</tr>
+<tr>
     <td> 
     <img width="350px" src="./documentation/profile/isLogin.png" border="0"  alt="profileIsLogin" />
     </td>
