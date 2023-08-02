@@ -190,19 +190,19 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>searchpages</td>
-    <td>popularpages</td>
-    <td>popularpages</td>
+    <td>addRecipe</td>
+    <td>profileIsLogin</td>
+    <td>profileNotLogin</td>
 </tr>
 <tr>
     <td>
-    <img width="350px" src="./documentation/add/addRecipe.png" border="0" alt="searchpages" />
+    <img width="350px" src="./documentation/add/addRecipe.png" border="0" alt="addRecipe" />
     </td>
     <td> 
-    <img width="350px" src="./documentation/profile/isLogin.png" border="0"  alt="popularpages" />
+    <img width="350px" src="./documentation/profile/isLogin.png" border="0"  alt="profileIsLogin" />
     </td>
     <td> 
-    <img width="350px" src="./documentation/profile/notLogin.png" border="0"  alt="popularpages" />
+    <img width="350px" src="./documentation/profile/notLogin.png" border="0"  alt="profileNotLogin" />
     </td>
 </tr>
 </table>
