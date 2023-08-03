@@ -12,6 +12,7 @@ import config from '../../../../config';
 import {PermissionsAndroid} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {updateUserPhoto} from '../../../../store/reducers/userSlice';
+import {PERMISSIONS, request} from 'react-native-permissions';
 
 export default function EditPicture() {
   const dispatch = useDispatch();
@@ -40,7 +41,20 @@ export default function EditPicture() {
         console.log('Gallery permission given');
         chooseImage();
       } else {
-        console.log('Gallery permission denied');
+        const result = await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES, {
+          title: 'Gallery Permission',
+          message: 'App needs access to your gallery',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        });
+
+        if (result === 'granted') {
+          console.log('Gallery permission given');
+          chooseImage();
+        } else {
+          console.log('Gallery permission denied');
+        }
       }
     } catch (err) {
       console.warn(err);
@@ -137,10 +151,8 @@ export default function EditPicture() {
         })
         .then(res => {
           dispatch(updateUserPhoto(res?.data?.data?.photo));
-          console.log(res?.data?.data?.photo);
           if (res.data.message === 'Success upload') {
             const userId = user.data.id.toString();
-            console.log(userId);
             firestore()
               .collection('users')
               .doc(userId)
@@ -148,7 +160,6 @@ export default function EditPicture() {
                 photo: res?.data?.data?.photo,
               })
               .then(() => {
-                console.log('photo updated!');
                 navigation.navigate('MyProfile');
               })
               .catch(error => {
@@ -166,7 +177,6 @@ export default function EditPicture() {
       setLoading(false);
     }
   };
-  // console.log(user);
   return (
     <View style={styles.container}>
       <Avatar.Image

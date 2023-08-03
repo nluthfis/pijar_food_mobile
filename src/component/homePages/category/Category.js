@@ -14,7 +14,7 @@ const items = [
   {source: require('../../../assets/category1.png'), text: 'Soup'},
   {source: require('../../../assets/category2.png'), text: 'Rice'},
   {source: require('../../../assets/category3.png'), text: 'Salad'},
-  {source: require('../../../assets/category4.png'), text: 'Nodle'},
+  {source: require('../../../assets/category4.png'), text: 'Noodle'},
   {source: require('../../../assets/category5.png'), text: 'Drink'},
   {source: require('../../../assets/category6.png'), text: 'Pizza'},
   {source: require('../../../assets/category7.png'), text: 'Burger'},

@@ -25,7 +25,6 @@ const Profile = () => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state?.auth);
   const user = useSelector(state => state?.user);
-
   useEffect(() => {
     if (auth?.token) {
       setIsLoggedIn(true);
@@ -53,20 +52,21 @@ const Profile = () => {
               size={150}
               icon="account-outline"
               source={
-                user?.data?.photo
-                  ? {uri: user?.data?.photo}
-                  : user?.data[0]?.photo
-                  ? {uri: user?.data[0]?.photo}
+                user && user.data && user.data.photo
+                  ? {uri: user.data.photo}
+                  : user && user.data && user.data[0] && user.data[0].photo
+                  ? {uri: user.data[0].photo}
                   : require('../../../assets/profile.jpg')
               }
               defaultSource={require('../../../assets/profile.jpg')}
               style={styles.avatar}
             />
+
             <Text style={styles.title}>
-              {user?.data?.fullName
-                ? user?.data?.fullName
-                : user?.data[0]?.fullName
-                ? user?.data[0]?.fullName
+              {user && user.data && user.data.fullName
+                ? user.data.fullName
+                : user && user.data && user.data[0] && user.data[0].fullName
+                ? user.data[0].fullName
                 : 'No Name'}
             </Text>
             <Button

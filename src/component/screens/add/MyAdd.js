@@ -33,6 +33,8 @@ export default function MyAdd() {
   const [newPhotoChosen, setNewPhotoChosen] = useState(false);
   const scrollViewRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [photoSize, setPhotoSize] = useState(0);
+  const [photoFormat, setPhotoFormat] = useState('');
 
   const requestGalleryPermission = async () => {
     try {
@@ -90,7 +92,7 @@ export default function MyAdd() {
         console.log('Camera permission denied');
       }
     } catch (err) {
-      console.warn(err);
+      Alert.alert(err);
     }
   };
   const takeImage = () => {
@@ -108,6 +110,8 @@ export default function MyAdd() {
         console.log('ImagePicker Error: ', response.error);
       } else {
         const source = {uri: response.assets[0].uri};
+        setPhotoSize(response.assets[0].fileSize);
+        setPhotoFormat(response.assets[0].type);
         setPhoto(source.uri);
         setNewPhotoChosen(true);
       }
@@ -127,6 +131,8 @@ export default function MyAdd() {
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
+        setPhotoSize(response.assets[0].fileSize);
+        setPhotoFormat(response.assets[0].type);
         const source = {uri: response.assets[0].uri};
         setPhoto(source.uri);
         setNewPhotoChosen(true);
@@ -153,6 +159,15 @@ export default function MyAdd() {
         Alert.alert('Image cant be empty');
       } else if (description.current === '') {
         Alert.alert('Image cant be empty');
+      } else if (photoSize > 2000000) {
+        Alert.alert('Image size cant be more than 2MB');
+      } else if (
+        photoFormat !== 'image/jpeg' &&
+        photoFormat !== 'image/png' &&
+        photoFormat !== 'image/jpg' &&
+        photoFormat !== 'image/webp'
+      ) {
+        Alert.alert('Image format must be jpeg or png or jpg or webp');
       }
       const token = auth?.token;
       const formData = new FormData();

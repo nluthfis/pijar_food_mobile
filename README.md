@@ -113,8 +113,8 @@ To learn more about React Native, take a look at the following resources:
 
 <table>
 <tr>
-    <td>splashcreen</td>
-    <td>splashscreen2</td>
+    <td>Splash Screen1</td>
+    <td>Splash Screen2</td>
 </tr>
 <tr>
 <tr>
@@ -126,7 +126,7 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>login</td>
+    <td>Login</td>
     <td>Register</td>
 </tr>
 <tr>
@@ -138,8 +138,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>home1</td>
-    <td>home2</td>
+    <td>Home1</td>
+    <td>Home2</td>
 </tr>
 <tr>
     <td>
@@ -150,8 +150,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>searchpages</td>
-    <td>popularpages</td>
+    <td>Search Pages</td>
+    <td>Popular Pages</td>
 </tr>
 <tr>
     <td>
@@ -162,8 +162,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>category</td>
-    <td>category recipes</td>
+    <td>Category</td>
+    <td>Category Recipes</td>
 </tr>
 <tr>
     <td>
@@ -174,9 +174,9 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Details1</td>
-    <td>DetailsVideo</td>
-    <td>DetailReview</td>
+    <td>Detail Ingredients</td>
+    <td>Detail Video</td>
+    <td>Detail Review</td>
 </tr>
 <tr>
     <td>
@@ -190,8 +190,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>addRecipe</td>
-    <td>addRecipe2</td>
+    <td>Add New Recipe</td>
+    <td>Add New Recipe2</td>
 </tr>
 <tr>
     <td>
@@ -202,8 +202,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>profileIsLogin</td>
-    <td>profileNotLogin</td>
+    <td>Profile is Login</td>
+    <td>Profile is Not Login</td>
 </tr>
 <tr>
     <td> 

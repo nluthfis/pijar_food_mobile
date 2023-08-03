@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card, Title, Paragraph} from 'react-native-paper';
+import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import config from '../../../../config';
@@ -18,6 +18,23 @@ export default function CategoryRecipes({route}) {
   const {category} = route.params;
   const Category = category.toLowerCase();
   const [recipes, setRecipes] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = recipes ? Math.ceil(recipes.length / itemsPerPage) : 0;
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = recipes
+    ? Math.min(startIndex + itemsPerPage, recipes.length)
+    : 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +49,7 @@ export default function CategoryRecipes({route}) {
     };
 
     fetchData();
-  }, []);
+  }, [Category]);
 
   return (
     <View style={styles.recipeContainer}>
@@ -44,7 +61,7 @@ export default function CategoryRecipes({route}) {
         ) : (
           <ScrollView>
             {recipes &&
-              recipes.map((item, key) => (
+              recipes.slice(startIndex, endIndex).map((item, key) => (
                 <TouchableOpacity
                   key={key}
                   style={styles.card}
@@ -64,6 +81,50 @@ export default function CategoryRecipes({route}) {
                   </Card>
                 </TouchableOpacity>
               ))}
+            <View style={styles.paginationContainer}>
+              {currentPage > 1 && (
+                <Button
+                  style={styles.btnPagination}
+                  buttonColor="black"
+                  textColor="black"
+                  onPress={handlePrevPage}>
+                  Prev
+                </Button>
+              )}
+              {currentPage > 2 && (
+                <Button
+                  onPress={() => setCurrentPage(currentPage - 1)}
+                  buttonColor="black"
+                  textColor="black"
+                  style={styles.btnPagination}>
+                  {currentPage - 1}
+                </Button>
+              )}
+              <Button
+                onPress={() => setCurrentPage(currentPage)}
+                textColor="black"
+                style={styles.btnPagination}
+                disabled>
+                {currentPage}
+              </Button>
+              {currentPage < totalPages && (
+                <Button
+                  onPress={() => setCurrentPage(currentPage + 1)}
+                  textColor="black"
+                  style={styles.btnPagination}>
+                  {currentPage + 1}
+                </Button>
+              )}
+              {currentPage < totalPages - 1 && (
+                <Button
+                  style={styles.btnPagination}
+                  buttonColor="white"
+                  textColor="black"
+                  onPress={handleNextPage}>
+                  Next
+                </Button>
+              )}
+            </View>
           </ScrollView>
         )}
       </View>

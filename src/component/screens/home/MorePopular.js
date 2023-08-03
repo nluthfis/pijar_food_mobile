@@ -8,7 +8,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card, Title, Paragraph} from 'react-native-paper';
+import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import axios from 'axios';
 import config from '../../../../config';
 import {useNavigation} from '@react-navigation/native';
@@ -16,10 +16,14 @@ import {useNavigation} from '@react-navigation/native';
 const MorePopular = () => {
   const [recipes, setRecipes] = useState([]);
   const navigation = useNavigation();
+  const [totalItem, setTotalItem] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
   useEffect(() => {
     axios
       .get(`${config.API_URL}recipes?popular=popular`)
       .then(response => {
+        setTotalItem(response.data.total);
         const jsonData = response.data.data;
         setRecipes(jsonData);
       })
@@ -27,9 +31,24 @@ const MorePopular = () => {
         console.error(error);
       });
   }, []);
+  const totalPages = recipes ? Math.ceil(recipes.length / itemsPerPage) : 0;
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = recipes
+    ? Math.min(startIndex + itemsPerPage, recipes.length)
+    : 0;
   return (
     <View style={styles.recipeContainer}>
       <View style={styles.container}>
+        <Text style={{color: 'black'}}>Total Recipe: {totalItem}</Text>
         {recipes && recipes?.length === 0 ? (
           <View>
             <Text style={styles.emptyText}>recipe search not found</Text>
@@ -37,7 +56,7 @@ const MorePopular = () => {
         ) : (
           <ScrollView>
             {recipes &&
-              recipes.map((item, key) => (
+              recipes.slice(startIndex, endIndex).map((item, key) => (
                 <TouchableOpacity
                   key={key}
                   style={styles.card}
@@ -52,11 +71,60 @@ const MorePopular = () => {
                         <Paragraph style={styles.text}>
                           {item.category}
                         </Paragraph>
+                        <Paragraph style={styles.text}>
+                          {item.average_score
+                            ? parseFloat(item.average_score).toFixed(1)
+                            : ''}
+                        </Paragraph>
                       </View>
                     </Card.Content>
                   </Card>
                 </TouchableOpacity>
               ))}
+            <View style={styles.paginationContainer}>
+              {currentPage > 1 && (
+                <Button
+                  style={styles.btnPagination}
+                  buttonColor="black"
+                  textColor="black"
+                  onPress={handlePrevPage}>
+                  Prev
+                </Button>
+              )}
+              {currentPage > 2 && (
+                <Button
+                  onPress={() => setCurrentPage(currentPage - 1)}
+                  buttonColor="black"
+                  textColor="black"
+                  style={styles.btnPagination}>
+                  {currentPage - 1}
+                </Button>
+              )}
+              <Button
+                onPress={() => setCurrentPage(currentPage)}
+                textColor="black"
+                style={styles.btnPagination}
+                disabled>
+                {currentPage}
+              </Button>
+              {currentPage < totalPages && (
+                <Button
+                  onPress={() => setCurrentPage(currentPage + 1)}
+                  textColor="black"
+                  style={styles.btnPagination}>
+                  {currentPage + 1}
+                </Button>
+              )}
+              {currentPage < totalPages - 1 && (
+                <Button
+                  style={styles.btnPagination}
+                  buttonColor="white"
+                  textColor="black"
+                  onPress={handleNextPage}>
+                  Next
+                </Button>
+              )}
+            </View>
           </ScrollView>
         )}
       </View>
@@ -127,7 +195,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 5,
     width: 50,
-    height: '50',
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },

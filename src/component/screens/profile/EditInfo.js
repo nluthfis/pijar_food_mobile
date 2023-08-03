@@ -24,66 +24,73 @@ export default function EditInfo() {
   const onToggleSnackBar = () => setVisible(!visible);
   const onDismissSnackBar = () => setVisible(false);
   const [loading, setLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleEdit = async () => {
     setLoading(true);
     try {
       const token = auth?.token;
-      await axios
-        .patch(
-          `${config.API_URL}profile`,
-          {
-            fullName: nameRef.current,
-            email: emailRef.current,
-            phoneNumber: phoneRef.current,
-            password: passwordRef.current,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/x-www-form-urlencoded',
+      if (passwordRef.current !== confirmPasswordRef.current) {
+        setMessage('Password and confirm password do not match');
+        setVisible(true);
+        setLoading(false);
+        return;
+      } else if (passwordRef.current === confirmPasswordRef.current) {
+        await axios
+          .patch(
+            `${config.API_URL}profile`,
+            {
+              fullName: nameRef.current,
+              email: emailRef.current,
+              phoneNumber: phoneRef.current,
+              password: passwordRef.current,
             },
-          },
-        )
-        .then(async res => {
-          dispatch(setUser(res.data.data));
-          const userId = res.data.data[0].id.toString();
-          console.log(res);
-          if (res.data.message === 'Success edit data') {
-            await firestore()
-              .collection('users')
-              .doc(userId)
-              .update({
-                fullName:
-                  nameRef.current !== undefined
-                    ? nameRef.current
-                    : res.data.data[0].fullName,
-                email:
-                  emailRef.current !== undefined
-                    ? emailRef.current
-                    : res.data.data[0].email,
-                phoneNumber:
-                  phoneRef.current !== undefined
-                    ? phoneRef.current
-                    : res.data.data[0].phoneNumber,
-              })
-              .then(() => {
-                setMessage('User data updated!');
-                setVisible(true);
-                navigation.navigate('MyProfile');
-              })
-              .catch(error => {
-                setMessage('Error updating user data in Firebase: ' + error);
-                setVisible(true);
-              });
-          }
-          setLoading(false);
-        })
-        .catch(error => {
-          setMessage('Error: ' + error);
-          setVisible(true);
-          setLoading(false);
-        });
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            },
+          )
+          .then(async res => {
+            dispatch(setUser(res.data.data[0]));
+            const userId = res.data.data[0].id.toString();
+            if (res.data.message === 'Success edit data') {
+              await firestore()
+                .collection('users')
+                .doc(userId)
+                .update({
+                  fullName:
+                    nameRef.current !== undefined
+                      ? nameRef.current
+                      : res.data.data[0].fullName,
+                  email:
+                    emailRef.current !== undefined
+                      ? emailRef.current
+                      : res.data.data[0].email,
+                  phoneNumber:
+                    phoneRef.current !== undefined
+                      ? phoneRef.current
+                      : res.data.data[0].phoneNumber,
+                })
+                .then(() => {
+                  setMessage('User data updated!');
+                  setVisible(true);
+                  navigation.navigate('MyProfile');
+                })
+                .catch(error => {
+                  setMessage('Error updating user data in Firebase: ' + error);
+                  setVisible(true);
+                });
+            }
+            setLoading(false);
+          })
+          .catch(error => {
+            setMessage('Error: ' + error);
+            setVisible(true);
+            setLoading(false);
+          });
+      }
     } catch (error) {
       setMessage('Error: ' + error);
       setVisible(true);
@@ -158,7 +165,7 @@ export default function EditInfo() {
         style={styles.input}
         placeholder="Change Password"
         placeholderTextColor="#298994"
-        secureTextEntry
+        secureTextEntry={!isPasswordVisible}
         underlineColor="transparent"
         theme={{roundness: 15}}
         mode="outlined"
@@ -175,10 +182,11 @@ export default function EditInfo() {
         }
         right={
           <TextInput.Icon
-            icon="eye"
+            icon={isPasswordVisible ? 'eye-off' : 'eye'}
             color="#1b5b63"
             size={30}
             style={styles.icon}
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
           />
         }
       />
@@ -186,7 +194,7 @@ export default function EditInfo() {
         style={styles.input}
         placeholder="Confirm Password"
         placeholderTextColor="#298994"
-        secureTextEntry
+        secureTextEntry={!isPasswordVisible}
         underlineColor="transparent"
         theme={{roundness: 15}}
         mode="outlined"
@@ -203,10 +211,11 @@ export default function EditInfo() {
         }
         right={
           <TextInput.Icon
-            icon="eye"
+            icon={isPasswordVisible ? 'eye-off' : 'eye'}
             color="#1b5b63"
             size={30}
             style={styles.icon}
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
           />
         }
       />

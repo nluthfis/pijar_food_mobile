@@ -60,21 +60,21 @@ const SearchPage = searchQuery => {
   }, []);
   return (
     <View style={styles.container}>
-      <MySearchBar />
+      <MySearchBar style={styles.searchbar} />
       <StatusBar backgroundColor="#eaf4f6" />
       <View style={styles.searchContainer}>
         <View style={styles.container}>
           {searchResults && searchResults.length === 0 ? (
             <View>
               <Text style={styles.totalRecipe}>
-                Total Recipe Found : {totalItem}
+                Total Recipe for {keyword} : {totalItem}
               </Text>
               <Text style={styles.emptyText}>recipe search not found</Text>
             </View>
           ) : (
             <ScrollView>
               <Text style={styles.totalRecipe}>
-                Total Recipe Found : {totalItem}
+                Total Recipe for {keyword} : {totalItem}
               </Text>
               {searchResults &&
                 searchResults
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     backgroundColor: 'white',
     borderRadius: 15,
-    marginTop: 75,
+    marginTop: 100,
     marginBottom: 30,
   },
   card: {

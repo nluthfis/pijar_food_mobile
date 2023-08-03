@@ -36,14 +36,21 @@ const SplashScreen = () => {
   const pagerRef = useRef(null);
   const navigation = useNavigation();
   const auth = useSelector(state => state.auth);
+  // useEffect(() => {
+  //   if (auth.token) {
+  //     navigation.navigate('MyTabs');
+  //   }
+  // }, [auth.token, navigation]);
+  // const handleButtonPress = () => {
+  //   pagerRef.current.setPage(1);
+  // };
   useEffect(() => {
-    if (auth.token) {
+    const timer = setTimeout(() => {
       navigation.navigate('MyTabs');
-    }
-  }, [auth.token, navigation]);
-  const handleButtonPress = () => {
-    pagerRef.current.setPage(1);
-  };
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [navigation]);
   return (
     <PagerView
       style={styles.pagerView}
@@ -63,15 +70,15 @@ const SplashScreen = () => {
           </Text>
           <Image source={image} resizeMode="cover" style={styles.image} />
 
-          <Button
+          {/* <Button
             mode="contained"
             style={styles.buttonNext}
             onPress={handleButtonPress}>
             <Text style={styles.textButton2}>Next</Text>
-          </Button>
+          </Button> */}
         </LinearGradient>
       </View>
-      <View key="2">
+      {/* <View key="2">
         <View style={styles.container2}>
           <FadeInView style={styles.fade}>
             <Text style={styles.textKey2}>Getting Started!</Text>
@@ -107,7 +114,7 @@ const SplashScreen = () => {
             </Text>
           </FadeInView>
         </View>
-      </View>
+      </View> */}
     </PagerView>
   );
 };
