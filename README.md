@@ -113,8 +113,8 @@ To learn more about React Native, take a look at the following resources:
 
 <table>
 <tr>
-    <td>Splash Screen1</td>
-    <td>Splash Screen2</td>
+    <td>Splash Screen1 Page</td>
+    <td>Splash Screen2 Page</td>
 </tr>
 <tr>
 <tr>
@@ -126,8 +126,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Login Pages</td>
-    <td>Register Pages</td>
+    <td>Login Page</td>
+    <td>Register Page</td>
 </tr>
 <tr>
     <td>
@@ -138,8 +138,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Home1 Pages</td>
-    <td>Home2 Pages</td>
+    <td>Home1 Page</td>
+    <td>Home2 Page</td>
 </tr>
 <tr>
     <td>
@@ -150,8 +150,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Search Pages</td>
-    <td>Popular Pages</td>
+    <td>Search Page</td>
+    <td>Popular Page</td>
 </tr>
 <tr>
     <td>
@@ -162,8 +162,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Category Pages</td>
-    <td>Category Recipes Pages</td>
+    <td>Category Page</td>
+    <td>Category Recipes Page</td>
 </tr>
 <tr>
     <td>
@@ -174,9 +174,9 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Detail Pages Section Ingredients </td>
-    <td>Detail Pages Section Video Pages</td>
-    <td>Detail Pages Section Review  </td>
+    <td>Detail Page Section Ingredients </td>
+    <td>Detail Page Section Video</td>
+    <td>Detail Page Section Review  </td>
 </tr>
 <tr>
     <td>
@@ -190,8 +190,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Add New Recipe Pages</td>
-    <td>Add New Recipe2 Pages</td>
+    <td>Add New Recipe Page</td>
+    <td>Add New Recipe2 Page</td>
 </tr>
 <tr>
     <td>
@@ -202,8 +202,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Profile is Login Pages</td>
-    <td>Profile is Not Login Pages</td>
+    <td>Authenticated Profile Page</td>
+    <td>Not Authenticated Profile Page</td>
 </tr>
 <tr>
     <td> 
