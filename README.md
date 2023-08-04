@@ -126,8 +126,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Login</td>
-    <td>Register</td>
+    <td>Login Pages</td>
+    <td>Register Pages</td>
 </tr>
 <tr>
     <td>
@@ -138,8 +138,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Home1</td>
-    <td>Home2</td>
+    <td>Home1 Pages</td>
+    <td>Home2 Pages</td>
 </tr>
 <tr>
     <td>
@@ -162,8 +162,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Category</td>
-    <td>Category Recipes</td>
+    <td>Category Pages</td>
+    <td>Category Recipes Pages</td>
 </tr>
 <tr>
     <td>
@@ -174,9 +174,9 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Detail Ingredients</td>
-    <td>Detail Video</td>
-    <td>Detail Review</td>
+    <td>Detail Pages Section Ingredients </td>
+    <td>Detail Pages Section Video Pages</td>
+    <td>Detail Pages Section Review  </td>
 </tr>
 <tr>
     <td>
@@ -190,8 +190,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Add New Recipe</td>
-    <td>Add New Recipe2</td>
+    <td>Add New Recipe Pages</td>
+    <td>Add New Recipe2 Pages</td>
 </tr>
 <tr>
     <td>
@@ -202,8 +202,8 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
-    <td>Profile is Login</td>
-    <td>Profile is Not Login</td>
+    <td>Profile is Login Pages</td>
+    <td>Profile is Not Login Pages</td>
 </tr>
 <tr>
     <td> 
