@@ -202,6 +202,18 @@ To learn more about React Native, take a look at the following resources:
     </td>
 </tr>
 <tr>
+    <td>Message Page</td>
+    <td>Chat Page</td>
+</tr>
+<tr>
+    <td>
+    <img width="350px" src="./documentation/message/messages.png" border="0" alt="Message" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/message/chat.png" border="0"  alt="Chat" />
+    </td>
+</tr>
+<tr>
     <td>Authenticated Profile Page</td>
     <td>Not Authenticated Profile Page</td>
 </tr>
