@@ -46,9 +46,9 @@ const MorePopular = () => {
     ? Math.min(startIndex + itemsPerPage, recipes.length)
     : 0;
   return (
-    <View style={styles.recipeContainer}>
-      <View style={styles.container}>
-        <Text style={{color: 'black'}}>Total Recipe: {totalItem}</Text>
+    <View style={styles.container}>
+      <View style={styles.recipeContainer}>
+        {/* <Text style={{color: 'black'}}>Total Recipe: {totalItem}</Text> */}
         {recipes && recipes?.length === 0 ? (
           <View>
             <Text style={styles.emptyText}>recipe search not found</Text>
@@ -95,14 +95,12 @@ const MorePopular = () => {
                 <Button
                   onPress={() => setCurrentPage(currentPage - 1)}
                   buttonColor="black"
-                  textColor="black"
                   style={styles.btnPagination}>
                   {currentPage - 1}
                 </Button>
               )}
               <Button
                 onPress={() => setCurrentPage(currentPage)}
-                textColor="black"
                 style={styles.btnPagination}
                 disabled>
                 {currentPage}
@@ -135,13 +133,11 @@ const MorePopular = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf5f6',
+    backgroundColor: 'white',
     marginTop: -20,
   },
   recipeContainer: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
     backgroundColor: 'white',
     borderRadius: 15,
     marginTop: 20,
@@ -191,11 +187,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btnPagination: {
-    backgroundColor: 'white',
+    backgroundColor: '#eaf4f6',
     borderRadius: 10,
     margin: 5,
     width: 50,
-    height: 50,
+    height: '50',
     justifyContent: 'center',
     alignItems: 'center',
   },

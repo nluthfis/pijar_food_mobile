@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, ScrollView, StyleSheet, Dimensions, Text} from 'react-native';
-import MySearchBar from '../../homePages/search/MySearchBar';
-import MyPopular from '../../homePages/category/MyCategory';
-import MyNewRecipes from '../../homePages/MyNewRecipes';
-import MyPopularCard from '../../homePages/MyPopularCard';
+import {View, ScrollView, StyleSheet, Dimensions} from 'react-native';
+import MySearchBar from '../../../component/homePages/search/MySearchBar';
+import MyPopular from '../../../component/homePages/category/MyCategory';
+import MyNewRecipes from '../../../component/homePages/MyNewRecipes';
+import MyPopularCard from '../../../component/homePages/popular/MyPopularCard';
 
 const screenHeight = Dimensions.get('window').height;
 export default function MyHome() {

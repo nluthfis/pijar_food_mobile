@@ -8,10 +8,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
-import config from '../../../../config';
+import config from '../../../config';
 import {PermissionsAndroid} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {updateUserPhoto} from '../../../../store/reducers/userSlice';
+import {updateUserPhoto} from '../../../store/reducers/userSlice';
 import {PERMISSIONS, request} from 'react-native-permissions';
 
 export default function EditPicture() {

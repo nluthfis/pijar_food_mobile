@@ -52,8 +52,8 @@ export default function CategoryRecipes({route}) {
   }, [Category]);
 
   return (
-    <View style={styles.recipeContainer}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.recipeContainer}>
         {recipes && recipes?.length === 0 ? (
           <View>
             <Text style={styles.emptyText}>recipe search not found</Text>
@@ -135,13 +135,11 @@ export default function CategoryRecipes({route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf5f6',
+    backgroundColor: 'white',
     marginTop: -20,
   },
   recipeContainer: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
     backgroundColor: 'white',
     borderRadius: 15,
     marginTop: 20,
@@ -191,7 +189,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btnPagination: {
-    backgroundColor: 'white',
+    backgroundColor: '#eaf4f6',
     borderRadius: 10,
     margin: 5,
     width: 50,

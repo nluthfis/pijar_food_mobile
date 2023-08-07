@@ -3,10 +3,10 @@ import {View, Text, StyleSheet} from 'react-native';
 import React, {useRef, useState} from 'react';
 import {TextInput, Button, Snackbar} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-import config from '../../../../config';
+import config from '../../../config';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import {setUser} from '../../../../store/reducers/userSlice';
+import {setUser} from '../../../store/reducers/userSlice';
 import {useNavigation} from '@react-navigation/native';
 
 export default function EditInfo() {

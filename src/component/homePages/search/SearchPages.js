@@ -60,67 +60,60 @@ const SearchPage = searchQuery => {
   }, []);
   return (
     <View style={styles.container}>
-      <MySearchBar style={styles.searchbar} />
+      <MySearchBar />
       <StatusBar backgroundColor="#eaf4f6" />
       <View style={styles.searchContainer}>
-        <View style={styles.container}>
-          {searchResults && searchResults.length === 0 ? (
-            <View>
-              <Text style={styles.totalRecipe}>
-                Total Recipe for {keyword} : {totalItem}
-              </Text>
-              <Text style={styles.emptyText}>recipe search not found</Text>
+        {searchResults && searchResults.length === 0 ? (
+          <View>
+            <Text style={styles.totalRecipe}>
+              Total Recipe for {keyword} : {totalItem}
+            </Text>
+            <Text style={styles.emptyText}>recipe search not found</Text>
+          </View>
+        ) : (
+          <ScrollView>
+            <Text style={styles.totalRecipe}>
+              Total Recipe for {keyword} : {totalItem}
+            </Text>
+            {searchResults &&
+              searchResults.slice(startIndex, endIndex).map((result, index) => (
+                <Card key={index} style={styles.card}>
+                  <Card.Content style={styles.cardContent}>
+                    <Image source={{uri: result.photo}} style={styles.image} />
+                    <View>
+                      <Title style={styles.text}>{result.tittle}</Title>
+                      <Paragraph style={styles.text}>
+                        {result.category}
+                      </Paragraph>
+                    </View>
+                  </Card.Content>
+                </Card>
+              ))}
+            <View style={styles.paginationContainer}>
+              {currentPage > 1 && (
+                <Button style={styles.btnPagination} onPress={handlePrevPage}>
+                  Prev
+                </Button>
+              )}
+              {Array.from({length: totalPages}, (_, index) => index + 1).map(
+                page => (
+                  <Button
+                    key={page}
+                    onPress={() => setCurrentPage(page)}
+                    style={styles.btnPagination}
+                    disabled={page === currentPage}>
+                    {page}
+                  </Button>
+                ),
+              )}
+              {currentPage < totalPages && (
+                <Button style={styles.btnPagination} onPress={handleNextPage}>
+                  Next
+                </Button>
+              )}
             </View>
-          ) : (
-            <ScrollView>
-              <Text style={styles.totalRecipe}>
-                Total Recipe for {keyword} : {totalItem}
-              </Text>
-              {searchResults &&
-                searchResults
-                  .slice(startIndex, endIndex)
-                  .map((result, index) => (
-                    <Card key={index} style={styles.card}>
-                      <Card.Content style={styles.cardContent}>
-                        <Image
-                          source={{uri: result.photo}}
-                          style={styles.image}
-                        />
-                        <View>
-                          <Title style={styles.text}>{result.tittle}</Title>
-                          <Paragraph style={styles.text}>
-                            {result.category}
-                          </Paragraph>
-                        </View>
-                      </Card.Content>
-                    </Card>
-                  ))}
-              <View style={styles.paginationContainer}>
-                {currentPage > 1 && (
-                  <Button style={styles.btnPagination} onPress={handlePrevPage}>
-                    Prev
-                  </Button>
-                )}
-                {Array.from({length: totalPages}, (_, index) => index + 1).map(
-                  page => (
-                    <Button
-                      key={page}
-                      onPress={() => setCurrentPage(page)}
-                      style={styles.btnPagination}
-                      disabled={page === currentPage}>
-                      {page}
-                    </Button>
-                  ),
-                )}
-                {currentPage < totalPages && (
-                  <Button style={styles.btnPagination} onPress={handleNextPage}>
-                    Next
-                  </Button>
-                )}
-              </View>
-            </ScrollView>
-          )}
-        </View>
+          </ScrollView>
+        )}
       </View>
     </View>
   );
@@ -129,16 +122,14 @@ const SearchPage = searchQuery => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eaf4f6',
-    marginTop: -20,
+    backgroundColor: 'white',
+    marginTop: -30,
   },
   searchContainer: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
     backgroundColor: 'white',
     borderRadius: 15,
-    marginTop: 100,
+    marginTop: 70,
     marginBottom: 30,
   },
   card: {
@@ -150,7 +141,7 @@ const styles = StyleSheet.create({
   cardContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#abd6db',
+    backgroundColor: '#eaf4f6',
     borderRadius: 15,
   },
   image: {
@@ -185,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btnPagination: {
-    backgroundColor: 'white',
+    backgroundColor: '#eaf4f6',
     borderRadius: 10,
     margin: 5,
     width: 50,

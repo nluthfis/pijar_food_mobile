@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import config from '../../../../config';
+import config from '../../../config';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {Card, Title, Paragraph, IconButton, Button} from 'react-native-paper';
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     marginLeft: 10,
+    textTransform: 'capitalize',
   },
   btnDelete: {
     position: 'absolute',
@@ -201,7 +202,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btnPagination: {
-    backgroundColor: 'white',
+    backgroundColor: '#eaf4f6',
     borderRadius: 10,
     margin: 5,
     width: 50,

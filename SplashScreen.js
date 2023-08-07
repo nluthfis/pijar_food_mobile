@@ -35,7 +35,6 @@ const FadeInView = props => {
 const SplashScreen = () => {
   const pagerRef = useRef(null);
   const navigation = useNavigation();
-  const auth = useSelector(state => state.auth);
   // useEffect(() => {
   //   if (auth.token) {
   //     navigation.navigate('MyTabs');
@@ -68,7 +67,16 @@ const SplashScreen = () => {
           <Text style={styles.text3}>
             Pijar Food is a platform to view and share recipes about food
           </Text>
-          <Image source={image} resizeMode="cover" style={styles.image} />
+          <LottieView
+            source={require('./src/assets/animation_ljyzjsnb.json')}
+            autoPlay
+            style={{width: 450, height: 450}}
+            loop={true}
+            resizeMode="cover"
+            onAnimationFinish={() => {
+              console.log('animation finished');
+            }}
+          />
 
           {/* <Button
             mode="contained"
