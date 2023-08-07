@@ -142,7 +142,7 @@ const Detail = ({route}) => {
                 />
               )}>
               <Text style={{color: liked ? 'white' : 'red'}}>
-                {liked ? 'Dislike' : 'Like'}
+                {liked ? 'Unlike' : 'Like'}
               </Text>
             </Button>
           </View>

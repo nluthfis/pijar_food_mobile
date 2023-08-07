@@ -84,76 +84,80 @@ export default function MyRecipe() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {recipes.slice(startIndex, endIndex).map((item, key) => (
-          <TouchableOpacity
-            key={key}
-            style={styles.card}
-            onPress={() => navigation.navigate('Details', {itemData: item})}>
-            <Card>
-              <Card.Content style={styles.cardContent}>
-                <Image source={{uri: item.photo}} style={styles.image} />
-                <View>
-                  <Title style={styles.text}>{item.tittle}</Title>
-                  <Paragraph style={styles.text}>{item.category}</Paragraph>
-                </View>
-                <IconButton
-                  icon="trash-can-outline"
-                  iconColor="white"
-                  backgroundColor="red"
-                  style={styles.btnDelete}
-                  size={25}
-                  onPress={() => handleDelete(item.id)}
-                />
-              </Card.Content>
-            </Card>
-          </TouchableOpacity>
-        ))}
-        <View style={styles.paginationContainer}>
-          {currentPage > 1 && (
+      {recipes.length === 0 ? (
+        <Text style={styles.emptyText}>No recipes created</Text>
+      ) : (
+        <ScrollView>
+          {recipes.slice(startIndex, endIndex).map((item, key) => (
+            <TouchableOpacity
+              key={key}
+              style={styles.card}
+              onPress={() => navigation.navigate('Details', {itemData: item})}>
+              <Card>
+                <Card.Content style={styles.cardContent}>
+                  <Image source={{uri: item.photo}} style={styles.image} />
+                  <View>
+                    <Title style={styles.text}>{item.tittle}</Title>
+                    <Paragraph style={styles.text}>{item.category}</Paragraph>
+                  </View>
+                  <IconButton
+                    icon="trash-can-outline"
+                    iconColor="white"
+                    backgroundColor="red"
+                    style={styles.btnDelete}
+                    size={25}
+                    onPress={() => handleDelete(item.id)}
+                  />
+                </Card.Content>
+              </Card>
+            </TouchableOpacity>
+          ))}
+          <View style={styles.paginationContainer}>
+            {currentPage > 1 && (
+              <Button
+                style={styles.btnPagination}
+                buttonColor="black"
+                textColor="black"
+                onPress={handlePrevPage}>
+                Prev
+              </Button>
+            )}
+            {currentPage > 2 && (
+              <Button
+                onPress={() => setCurrentPage(currentPage - 1)}
+                buttonColor="black"
+                textColor="black"
+                style={styles.btnPagination}>
+                {currentPage - 1}
+              </Button>
+            )}
             <Button
+              onPress={() => setCurrentPage(currentPage)}
+              textColor="black"
               style={styles.btnPagination}
-              buttonColor="black"
-              textColor="black"
-              onPress={handlePrevPage}>
-              Prev
+              disabled>
+              {currentPage}
             </Button>
-          )}
-          {currentPage > 2 && (
-            <Button
-              onPress={() => setCurrentPage(currentPage - 1)}
-              buttonColor="black"
-              textColor="black"
-              style={styles.btnPagination}>
-              {currentPage - 1}
-            </Button>
-          )}
-          <Button
-            onPress={() => setCurrentPage(currentPage)}
-            textColor="black"
-            style={styles.btnPagination}
-            disabled>
-            {currentPage}
-          </Button>
-          {currentPage < totalPages && (
-            <Button
-              onPress={() => setCurrentPage(currentPage + 1)}
-              textColor="black"
-              style={styles.btnPagination}>
-              {currentPage + 1}
-            </Button>
-          )}
-          {currentPage < totalPages - 1 && (
-            <Button
-              style={styles.btnPagination}
-              buttonColor="white"
-              textColor="black"
-              onPress={handleNextPage}>
-              Next
-            </Button>
-          )}
-        </View>
-      </ScrollView>
+            {currentPage < totalPages && (
+              <Button
+                onPress={() => setCurrentPage(currentPage + 1)}
+                textColor="black"
+                style={styles.btnPagination}>
+                {currentPage + 1}
+              </Button>
+            )}
+            {currentPage < totalPages - 1 && (
+              <Button
+                style={styles.btnPagination}
+                buttonColor="white"
+                textColor="black"
+                onPress={handleNextPage}>
+                Next
+              </Button>
+            )}
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 }
@@ -204,5 +208,11 @@ const styles = StyleSheet.create({
     height: '50',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyText: {
+    color: 'black',
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

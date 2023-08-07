@@ -334,10 +334,12 @@ export default function MyAdd() {
             style={styles.button}
             labelStyle={{color: 'white'}}
             theme={{colors: {outline: '#298994'}}}
-            title="Submit Photo"
+            title="Submit Recipe"
             disabled={loading}
             onPress={handleAdd}>
-            {loading ? 'Loading...' : 'Add Recipe'}
+            <Text style={{width: '100%'}}>
+              {loading ? 'Loading...' : 'Add Recipe'}
+            </Text>
           </Button>
         </View>
       </ScrollView>
