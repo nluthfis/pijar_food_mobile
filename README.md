@@ -113,23 +113,14 @@ To learn more about React Native, take a look at the following resources:
 
 <table>
 <tr>
-    <td>Splash Screen1 Page</td>
-    <td>Splash Screen2 Page</td>
-</tr>
-<tr>
-<tr>
-    <td>
-        <img width="350px" src="./documentation/splashscreen/openingapps.png" border="0" alt="splashcreen" />
-    </td>
-    <td> 
-        <img width="350px" src="./documentation/splashscreen/openingapps2.png" border="0"  alt="splashscreen2" />
-    </td>
-</tr>
-<tr>
+    <td>Splash Screen Page</td>
     <td>Login Page</td>
     <td>Register Page</td>
 </tr>
 <tr>
+    <td>
+        <img width="350px" src="./documentation/splashscreen/openingapps.png" border="0" alt="splashcreen" />
+    </td>
     <td>
         <img width="350px" src="./documentation/auth/login.png" border="0" alt="login" />
     </td>
