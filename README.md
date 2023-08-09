@@ -203,6 +203,18 @@ To learn more about React Native, take a look at the following resources:
     <img width="350px" src="./documentation/profile/MyLikedRecipe.PNG" border="0"  alt="MyLiked" />
     </td>
 </tr>
+<tr>
+    <td>Edit Picture Page</td>
+    <td>Edit Info Page</td>
+</tr>
+<tr>
+    <td> 
+    <img width="350px" src="./documentation/profile/editpicture.PNG" border="0"  alt="EditPicturePage" />
+    </td>
+    <td> 
+    <img width="350px" src="./documentation/profile/editInfo.PNG" border="0"  alt="EditInfoPage" />
+    </td>
+</tr>
 </table>
 
 # backend repositories

@@ -55,7 +55,7 @@ export default function MyLikedRecipes() {
     }
   }, [auth?.token]);
   return (
-    <View>
+    <View style={styles.container}>
       {recipes.length === 0 ? (
         <Text style={styles.emptyText}>No recipes liked</Text>
       ) : (
