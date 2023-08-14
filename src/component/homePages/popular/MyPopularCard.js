@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import config from '../../../../config';
+import {Rating} from 'react-native-ratings';
 
 const MyPopularCard = () => {
   const navigation = useNavigation();
@@ -57,10 +58,23 @@ const MyPopularCard = () => {
                   <Image source={{uri: item.photo}} style={styles.image} />
                   <View>
                     <Title style={styles.text}>{item.tittle}</Title>
-                    <Paragraph style={styles.text}>
-                      {item.average_score
+                    <Paragraph
+                      style={[
+                        styles.text,
+                        // {display: 'flex', justifyContent: 'center'},
+                      ]}>
+                      {/* {item.average_score
                         ? parseFloat(item.average_score).toFixed(1)
-                        : ''}
+                        : ''} */}
+                      <Rating
+                        type="custom"
+                        ratingColor="#FFD700"
+                        ratingBackgroundColor="gray"
+                        ratingCount={5}
+                        imageSize={20}
+                        startingValue={item.average_score || 0}
+                        tintColor="#eaf4f6"
+                      />
                     </Paragraph>
                     <Paragraph style={styles.text}>{item.category}</Paragraph>
                   </View>

@@ -12,6 +12,7 @@ import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import axios from 'axios';
 import config from '../../../../config';
 import {useNavigation} from '@react-navigation/native';
+import {Rating} from 'react-native-ratings';
 
 const MorePopular = () => {
   const [recipes, setRecipes] = useState([]);
@@ -72,9 +73,18 @@ const MorePopular = () => {
                           {item.category}
                         </Paragraph>
                         <Paragraph style={styles.text}>
-                          {item.average_score
+                          {/* {item.average_score
                             ? parseFloat(item.average_score).toFixed(1)
-                            : ''}
+                            : ''} */}
+                          <Rating
+                            type="custom"
+                            ratingColor="#FFD700"
+                            ratingBackgroundColor="gray"
+                            ratingCount={5}
+                            imageSize={20}
+                            startingValue={item.average_score || 0}
+                            tintColor="#eaf4f6"
+                          />
                         </Paragraph>
                       </View>
                     </Card.Content>

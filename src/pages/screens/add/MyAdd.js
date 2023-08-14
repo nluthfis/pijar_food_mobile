@@ -20,12 +20,12 @@ import {PermissionsAndroid} from 'react-native';
 import axios from 'axios';
 import config from '../../../../config';
 import {PERMISSIONS, request} from 'react-native-permissions';
+import {SelectList} from 'react-native-dropdown-select-list';
 
 export default function MyAdd() {
   const [tittle, setTittle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [videoLink, setVideoLink] = useState('');
-  const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState(null);
   const auth = useSelector(state => state?.auth);
@@ -35,7 +35,70 @@ export default function MyAdd() {
   const [loading, setLoading] = useState(false);
   const [photoSize, setPhotoSize] = useState(0);
   const [photoFormat, setPhotoFormat] = useState('');
-
+  const [category, setCategory] = useState(null);
+  console.log(category);
+  const categoryList = [
+    {
+      key: 'Soup',
+      value: 'Soup',
+    },
+    {
+      key: 'Rice',
+      value: 'Rice',
+    },
+    {
+      key: 'Salad',
+      value: 'Salad',
+    },
+    {
+      key: 'Noodle',
+      value: 'Noodle',
+    },
+    {
+      key: 'Drink',
+      value: 'Drink',
+    },
+    {
+      key: 'Pizza',
+      value: 'Pizza',
+    },
+    {
+      key: 'Burger',
+      value: 'Burger',
+    },
+    {
+      key: 'CupCake',
+      value: 'CupCake',
+    },
+    {
+      key: 'Sandwich',
+      value: 'Sandwich',
+    },
+    {
+      key: 'Taco',
+      value: 'Taco',
+    },
+    {
+      key: 'Dumpling',
+      value: 'Dumpling',
+    },
+    {
+      key: 'Nugget',
+      value: 'Nugget',
+    },
+    {
+      key: 'Porridge',
+      value: 'Porridge',
+    },
+    {
+      key: 'Seafood',
+      value: 'Seafood',
+    },
+    {
+      key: 'Sushi',
+      value: 'Sushi',
+    },
+  ];
   const requestGalleryPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -72,7 +135,6 @@ export default function MyAdd() {
       console.warn(err);
     }
   };
-
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -153,7 +215,7 @@ export default function MyAdd() {
         Alert.alert('Ingredients cant be empty');
       } else if (videoLink.current === '') {
         Alert.alert('Video Link cant be empty');
-      } else if (category.current === '') {
+      } else if (category === null) {
         Alert.alert('Category cant be empty');
       } else if (photo === null) {
         Alert.alert('Image cant be empty');
@@ -240,6 +302,7 @@ export default function MyAdd() {
           <Text style={{color: '#206b73', marginLeft: 20, marginBottom: 5}}>
             Please include a comma followed by a space for each ingredient.
           </Text>
+
           <TextInput
             style={styles.input2}
             placeholder="Ingredients"
@@ -267,7 +330,31 @@ export default function MyAdd() {
             outlineColor={'#7abec1'}
             activeOutlineColor="#206b73"
           />
-          <TextInput
+          <View style={{marginLeft: 10, marginRight: 10}}>
+            <SelectList
+              setSelected={val => setCategory(val)}
+              data={categoryList}
+              save="value"
+              boxStyles={{
+                borderRadius: 10,
+                color: '#7abec1',
+                borderColor: '#7abec1',
+                height: 50,
+              }}
+              inputStyles={{
+                color: '#7abec1',
+              }}
+              dropdownStyles={{
+                borderColor: '#7abec1',
+              }}
+              dropdownTextStyles={{
+                color: '#206b73',
+              }}
+              placeholder="Select category"
+            />
+          </View>
+
+          {/* <TextInput
             style={styles.input}
             placeholder="Category"
             placeholderTextColor="#7abec1"
@@ -279,7 +366,7 @@ export default function MyAdd() {
             mode="outlined"
             outlineColor={'#7abec1'}
             activeOutlineColor="#206b73"
-          />
+          /> */}
           <TextInput
             style={styles.input2}
             placeholder="description"
